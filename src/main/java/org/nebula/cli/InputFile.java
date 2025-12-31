@@ -1,4 +1,4 @@
-package org.nebula.nebc;
+package org.nebula.cli;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

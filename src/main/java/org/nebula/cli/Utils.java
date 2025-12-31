@@ -1,4 +1,4 @@
-package org.nebula.nebc;
+package org.nebula.cli;
 
 public class Utils
 {
