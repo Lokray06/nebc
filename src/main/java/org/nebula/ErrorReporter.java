@@ -27,7 +27,7 @@ public class ErrorReporter
     }
 
     boolean hasErrors = false;
-    private Kind variant;
+    private final Kind variant;
 
     public ErrorReporter(Kind variant)
     {
@@ -45,5 +45,5 @@ public class ErrorReporter
         return this.variant;
     }
 
-    boolean hasErrors() { return this.hasErrors; }
+    public boolean hasErrors() { return this.hasErrors; }
 }

@@ -1,12 +1,13 @@
-package org.nebula;
+package org.nebula.cli;
 
-import org.nebula.nebc.FileType;
-import org.nebula.nebc.InputFile;
-import org.nebula.nebc.Utils;
+import org.nebula.ErrorReporter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ArgParser
 {
-    public void parseArgs(String[] args)
+    public NebCState parseArgs(String[] args)
     {
         ErrorReporter er = new ErrorReporter(ErrorReporter.Kind.ARGS);
 
@@ -16,6 +17,8 @@ public class ArgParser
             System.out.println(Utils.getHelpMsg());
             System.exit(1);
         }
+
+        List<InputFile> files = new ArrayList<>();
 
         for (String arg : args)
         {
@@ -36,11 +39,9 @@ public class ArgParser
             if (file.getType() == FileType.UNKNOWN)
             {
                 er.log("Unsupported file type: " + file.getFileName());
-                continue;
             }
 
-            // Valid file — process it
-            System.out.println("Valid file: " + file.getFileName() + " (type: " + file.getType() + ")");
+            files.add(file);
         }
 
         // Optionally exit if any errors occurred
@@ -48,5 +49,7 @@ public class ArgParser
         {
             System.exit(1);
         }
+
+        return new NebCState(files);
     }
 }
